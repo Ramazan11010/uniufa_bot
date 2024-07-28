@@ -61,7 +61,7 @@ async def callback_actual(query: CallbackQuery):
     for submit in output_submit_values:
         if submit[5] == "не обработано":
             photo_id = str(submit[9]).strip()
-            text = f"Заявка №{submit[0]}\n" \
+            text = f"Кабинет №{submit[1]}. Заявка №{submit[0]}\n" \
                    f"{submit[2]} – {submit[5]}"
             if photo_id == 'нет':
                 await query.message.answer(text)

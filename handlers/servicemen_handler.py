@@ -48,7 +48,7 @@ async def callback_actual(query: CallbackQuery):
                 SERV_ID = int(serv[0])
                 if (SERV_ID == USER_ID) and (submit[5] == "не обработано"):
                     photo_id = str(submit[9]).strip()
-                    text = f"Заявка №{submit[0]}\n" \
+                    text = f"Кабинет №{submit[1]}. Заявка №{submit[0]}\n" \
                            f"{submit[2]} – {submit[5]}"
                     if photo_id == 'нет':
                         await query.message.answer(text)
@@ -82,7 +82,7 @@ async def callback_hottasks(query: CallbackQuery):
                 SERV_ID = int(serv[0])
                 if (SERV_ID == USER_ID) and (after_three_days == submit[-3]):
                     photo_id = str(submit[9]).strip()
-                    text = f"Заявка №{submit[0]}\n" \
+                    text = f"Кабинет №{submit[1]}. Заявка №{submit[0]}\n" \
                            f"{submit[2]} – {submit[5]}"
                     if photo_id == 'нет':
                         await query.message.answer(text)
