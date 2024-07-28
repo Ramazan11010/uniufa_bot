@@ -8,6 +8,7 @@ from handlers.mainserv_handler import builder_commands_main_servicemen
 from handlers.servicemen_handler import builder_commands_servicemen
 
 router = Router()
+user_status = None
 
 
 class MainCallback(CallbackData, prefix='main'):
@@ -61,8 +62,16 @@ async def cmd_start(msg: types.Message) -> None:
 
 
 @router.callback_query(MainCallback.filter(F.foo == "demo"))
-async def my_callback_foo(query: CallbackQuery, msg: types.Message):
+async def demo_func_show(query: CallbackQuery):
+    text = f"Введите команду /run, " \
+           f"чтобы продолжить"
+    await query.message.answer(text=text)
+
+
+@router.message(F.text == '/run')
+async def my_foo(msg: types.Message):
     USER_ID = int(msg.from_user.id)
+    global user_status
     arendators_values = service.spreadsheets().values().get(
         spreadsheetId=spreadsheet_id,
         range='Арендаторы!A:G',
@@ -92,9 +101,10 @@ async def my_callback_foo(query: CallbackQuery, msg: types.Message):
     list_of_servicemen_ids = list()
     text = "✨ Главное меню\n" \
            "Выбери функцию, которая тебе нужна. Если ты потеряешь " \
-           "главное меню, просто введи команду /start"
+           "главное меню, просто введи команду /start. Если ты потеряешь меню, просто" \
+           " введи /commands"
     admin_text = f"✨ {admin_values[0][2]} {admin_values[0][3]}, здравствуйте!\n" \
-           "Введите команду /getinfo, чтобы получить информацию о конкретной заявке. "
+                 "Введите команду /getinfo, чтобы получить информацию о конкретной заявке. "
     for i in range(len(arendators_values)):
         list_of_arend_ids.append(arendators_values[i][0])
     for i in range(len(servicemen)):
@@ -102,25 +112,63 @@ async def my_callback_foo(query: CallbackQuery, msg: types.Message):
 
     main_serviceman_id = main_serviceman[0][0]
     if USER_ID == int(main_serviceman_id):
-        await query.message.answer(text=text,
-                                   reply_markup=builder_commands_main_servicemen.as_markup())
+        user_status = 'главный'
+        await msg.answer(text=text,
+                        reply_markup=builder_commands_main_servicemen.as_markup())
     elif str(USER_ID) == admin_values[0][0]:
-        await query.message.answer(text=admin_text)
-
-    elif (USER_ID != int(main_serviceman_id)) and (str(USER_ID) != admin_values[0][0]):
+        user_status = 'админ'
+        await msg.answer(text=admin_text)
+    elif (USER_ID != int(main_serviceman_id)) and (
+            str(USER_ID) != admin_values[0][0]):
         for i in range(len(arendators_values)):
             if USER_ID == int(arendators_values[i][0]):
-                await query.message.answer(text=text,
-                                           reply_markup=builder_commands_arend.as_markup())
+                user_status = 'арендатор'
+                await msg.answer(text=text,
+                                reply_markup=builder_commands_arend.as_markup())
         for i in range(len(servicemen)):
             if USER_ID == int(servicemen[i][0]):
-                await query.message.answer(text=text,
-                                           reply_markup=builder_commands_servicemen.as_markup())
+                user_status = 'сервисмен'
+                await msg.answer(text=text,
+                                reply_markup=builder_commands_servicemen.as_markup())
     else:
-        await query.message.answer(
+        await msg.answer(
             "Извините, но вы не являетесь сотрудником компании.\n"
             "Функционал бота доступен только тем, кто зарегистрирован\n"
             f"администратором. Контактный номер: {contact[0][0]}")
+
+
+
+@router.message(F.text == '/commands')
+async def show_com(msg: types.Message):
+    global user_status
+    if user_status == 'главный':
+        text = f"{msg.from_user.first_name}, Вам доступны следующие команды:\n" \
+               f"1. /change – изменить статус заявки;\n" \
+               f"2. /actual – вывести актуальные заявки;\n" \
+               f"3. /redirect – перенаправить заявку на сервисмена."
+        await msg.answer(text=text)
+    elif user_status == 'админ':
+        text = f"{msg.from_user.first_name}, Вам доступны следующие команды:\n" \
+               f"1. /getinfo – получить подробную информацию " \
+               f"по конкретной заявке."
+        await msg.answer(text=text)
+    elif user_status == 'арендатор':
+        text = f"{msg.from_user.first_name}, Вам доступны следующие команды:\n" \
+               f"1. /submit – оставить заявку на выполнение сервисных работ;\n" \
+               f"2. /feedback – оставить свой отзыв;\n" \
+               f"3. /contacts – вывести контактный номер телефона;\n" \
+               f"4. /status – узнать статус своих заявок."
+        await msg.answer(text=text)
+    elif user_status == 'сервисмен':
+        text = f"{msg.from_user.first_name}, Вам доступны следующие команды:\n" \
+               f"1. /hottasks – вывести список горящих заявок;\n" \
+               f"2. /alltasks – вывести список всех заявок."
+        await msg.answer(text=text)
+    else:
+        print(user_status)
+        text = f'Извините, но у Вас нет доступа к боту, ' \
+               f'обратитесь к администратору.'
+        await msg.answer(text=text)
 
 
 @router.callback_query(CommandsCallback.filter(F.foo == "/status"))
