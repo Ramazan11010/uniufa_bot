@@ -25,7 +25,6 @@ ANSWERS_REDIRECT = []
 EMPLOYEE = ''
 
 
-# Определение CallbackData для обработки кликов по кнопкам
 class CommandsCallback(CallbackData, prefix='commands'):
     foo: str
 
@@ -50,7 +49,6 @@ main_servicemen_button3 = builder_commands_main_servicemen.button(
 builder_commands_main_servicemen.adjust(1)
 
 
-# Callback-обработчик для кнопки "Вывести актуальные заявки"
 @mainserv_router.callback_query(CommandsCallback.filter(F.foo == "/actual"))
 async def callback_actual(query: CallbackQuery):
     output_submit_values = service.spreadsheets().values().get(
@@ -72,7 +70,6 @@ async def callback_actual(query: CallbackQuery):
                                        caption=text)
 
 
-# Callback-обработчик для кнопки "Изменить статус заявки"
 @mainserv_router.callback_query(CommandsCallback.filter(F.foo == "/change"))
 async def callback_change(query: CallbackQuery, state: FSMContext):
     await query.message.answer("Изменение статуса заявки")
@@ -135,7 +132,6 @@ async def process_q2(msg: types.Message, state: FSMContext):
         await state.set_state(ChangeFormStates.QUESTION_2)
 
 
-# Callback-обработчик для кнопки "Перенаправить заявку"
 @mainserv_router.callback_query(CommandsCallback.filter(F.foo == "/redirect"))
 async def callback_redirect(query: CallbackQuery, state: FSMContext):
     await query.message.answer("Перенаправление заявки:")

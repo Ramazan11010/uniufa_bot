@@ -25,7 +25,6 @@ main_servicemen_button2 = builder_commands_servicemen.button(
 builder_commands_servicemen.adjust(1)
 
 
-# Все задачи закрепленные за конкретным сервисменом
 @router_servicemen.callback_query(
     CommandsServCallback.filter(F.foo == "/alltasks"))
 async def callback_actual(query: CallbackQuery):
