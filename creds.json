@@ -1,13 +1,1 @@
-{
-  "type": "service_account",
-  "project_id": "uniufa",
-  "private_key_id": "be3318a8659eed5ef3e271b76a4ec791c963e9d6",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCjMXE2eHNrCUZ+\nl5f2Aa1Ci7l2z5eu28yAUTGbmSWK9zGQ2fMraUPO0H30RPoRTUti4D4yBCi1rz72\nOSUv4UFvEGn0+6E8uPfxSukqO2qZl+tYuA37grYFC6z6N+foKLT5seDZ/qPcHWHC\nFFYuBuc45wHYp5div62J1Brn72j4nlPsXJ81yd/773tTg0tcHzAOowRZQScNzN49\nQlog6MbVa2ZRoid+3gfjdYDu6O71WQji8C9c9xoOGtpUADL7+YE6akQZWFaOBZ2f\nTLTLN85t8NheKr598VFQ+DNd53HEtvNHBylD3Wu7d0Hhk3oNjuf4Tunli/nwzuIY\nlrQ4Ks7BAgMBAAECggEAAtveKHS4zCYDevrQsNi9vGDsb92+MewoIYJ2n5vJvuzy\nnH+ac0sE0uz3a2fI0BQ4KRZNxaBZtpjYTe3BalzIQcPuQMJGnFzOzGZ+JiEYRoJ9\nJyLCjTKgid8m9aNUhd5OcRJAAr6jmArYWksjGTtiCibPGyCgufRK2+N8MQ5qSsJr\nVsr1Xmiyn/+SiaRiEAxoeQExf63Hm7bEpjXCZBV4nxFP3h1lFr9MhYTim9+Z8h9R\n5FobbDotjumt3+M6jnvf8DTOMklI5vnmJFwfM2W0TaMW2HfdnwOARfPUg3Fw8yb3\nQPBinUUnfsrByze82jgaSPBOv0DGOCe5SNWoOz2fYQKBgQDl3OiY6uc9+7cQ9FPX\nHo6iyyLkVVL7VwdyP3QQj+nC752yMFy77ZswjZEE7fSnXDpRpdBKP9+nvI6M7Fb4\ntImzcuTKbkq1984QF5qQuq8yxyDXIcF1KWoQH3cHLUTdA6WpY08eItcnk3n2wjGD\nzRQsVLPpt5se6iGvtV3UX+ro4QKBgQC1v9bhIiuBGkklEXz2ia0sBAwLDlddzw/C\nhpwEoaG+Xlojfv70lzrZ/wAj1302+KC61nidKdWqwO2zYbcUJOeDAgF8oUuPLZgK\nkCxDg6HrjE1UWGWPO6AElqalxUuJ9CfEiO3GvNHHftT97AclNJS8pa6mqwNR9Xwt\nC0NlOPNB4QKBgQDMnBzL6eWXThZB2Es9JO0wygOwHqd0JZ7yOrt09rXNmP/Vmqkh\ne7r1uD5Llgl+ZGFhRmknfr32kKiPlt1AG2yruO0hqJWGbyQVPP2QMS081PZNqbWM\nNiY8XdXVJJ204sc3BbhqifbdOrCJT4lF2mpHn8pak95X4W/E+XuhTRRM4QKBgQCf\nOxB+M5qbxDS7FiQ+NoaSXoVSlmDynfs3uQktgZIcH7unB5dFIM19ucwcmqloJNFk\nf4wyXTmGHPrjwsNMEb0G6RX2Y7W4HgDrmD4/dC7DGCuTrtJjd6CNBJPB/iVdGpxQ\nsopnKHw95J+kS0pDTVrWH+3wtTj2cDU3nXuRTiDI4QKBgF6FPBK8wPZtI7jfEmMG\nkHc7oCNpkGBw48nwJ1BaNX3YFeBIxa+hjzEQQrmFjcpbrZSd3OCISO8sw/SXNvqf\nnhsVyCUMYUeIT4+baDIcnPEgIRk1sGaCESv3kHjHJ24aG6rdR2f19wUX9uoaKcZe\nrZzd+R72bgZ4RQ6l7S6O3f3a\n-----END PRIVATE KEY-----\n",
-  "client_email": "smth08@uniufa.iam.gserviceaccount.com",
-  "client_id": "115450425795342778948",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/smth08%40uniufa.iam.gserviceaccount.com",
-  "universe_domain": "googleapis.com"
-}
+
